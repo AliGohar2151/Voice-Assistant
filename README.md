@@ -24,11 +24,11 @@ pip install pyttsx3 speech_recognition requests beautifulsoup4
 To start the assistant, run the following command in your terminal:
 
 ```bash
-To start the assistant, run the following command in your terminal:
+python main.py
 ```
 Once running, you can interact with the assistant using voice commands
 
-##🗣 Commands
+## 🗣 Commands
 
 - “wake up” - Activates the assistant.
 - “go to sleep” - Deactivates the assistant.
