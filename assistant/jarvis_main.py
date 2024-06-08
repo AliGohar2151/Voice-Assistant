@@ -3,6 +3,7 @@ import speech_recognition
 import requests
 from bs4 import BeautifulSoup
 import datetime
+import os
 
 engine = pyttsx3.init("sapi5")
 voices = engine.getProperty("voices")
@@ -32,6 +33,13 @@ def takeCommand():
         print("Say that again please...")
         return "None"
     return query
+
+
+def alarm(query):
+    timehere = open("Alarmtext.txt", "a")
+    timehere.write(query)
+    timehere.close()
+    os.startfile("Alarm.py")
 
 
 if __name__ == "__main__":
@@ -99,6 +107,13 @@ if __name__ == "__main__":
                     openappweb(query)
                 elif "close" in query:
                     from Dictapp import closeappweb
+
+                elif "set an alarm" in query:
+                    print("input time example:- 10 and 10 and 10")
+                    speak("Set the time")
+                    a = input("Please tell the time :- ")
+                    alarm(a)
+                    speak("Done,sir")
 
                     closeappweb(query)
                 elif "shutdown" in query:
