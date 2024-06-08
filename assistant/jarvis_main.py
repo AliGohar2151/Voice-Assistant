@@ -86,6 +86,7 @@ if __name__ == "__main__":
                     data = BeautifulSoup(r.text, "html.parser")
                     temp = data.find("div", class_="BNeawe").text
 
+                    print(f"The temperature in kamra is {temp}")
                     speak(f"The temperature in kamra is {temp}")
 
                 elif "weather" in query:
@@ -95,6 +96,7 @@ if __name__ == "__main__":
                     data = BeautifulSoup(r.text, "html.parser")
                     temp = data.find("div", class_="BNeawe").text
 
+                    print(f"The temperature in kamra is {temp}")
                     speak(f"The temperature in kamra is {temp}")
 
                 elif "the time" in query:

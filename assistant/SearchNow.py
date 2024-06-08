@@ -4,6 +4,7 @@ import pywhatkit
 import wikipedia
 import webbrowser
 
+
 engine = pyttsx3.init("sapi5")
 voices = engine.getProperty("voices")
 engine.setProperty("voice", voices[0].id)
@@ -41,20 +42,46 @@ def searchGoogle(query):
     if "google" in query:
         import wikipedia as googleScrap
 
-        query = query.replace("Jarvis", "")
-        query = query.replace("google search", "")
-        query = query.replace("google", "")
-        query = query.replace("search", "")
-        speak("This is what i found on google")
+        unwanted_phrases = [
+            "jarvis",
+            "hey jarvis",
+            "hey",
+            "google search",
+            "google",
+            "search",
+            "please",
+            "could you",
+            "would you",
+            "can you",
+            "will you",
+            "tell me about",
+            "show me",
+            "find",
+            "look for",
+            "what is",
+            "who is",
+            "for",
+            "where is",
+        ]
 
-        try:
-            pywhatkit.search(query)
-            result = googleScrap.summary(query, 1)
-            print(result)
-            speak(result)
+        query = query.lower()
+        for phrase in unwanted_phrases:
+            query = query.replace(phrase, "")
 
-        except Exception as e:
-            speak("No speakable output found on google")
+        query = query.strip()
+
+        if query:
+            speak("This is what I found on Google")
+            try:
+                pywhatkit.search(query)
+                result = googleScrap.summary(query, sentences=1)
+                print(result)
+                speak(result)
+            except Exception as e:
+                print(e)
+                speak("No speakable output found on Google")
+        else:
+            speak("Please provide a valid search query.")
 
 
 def searchYoutube(query):
