@@ -102,11 +102,13 @@ if __name__ == "__main__":
                     speak(f"Sir, the time is {strTime}")
 
                 elif "open" in query:
-                    from Dictapp import openappweb
+                    from Dictapp import openAppWeb
 
-                    openappweb(query)
+                    openAppWeb(query)
                 elif "close" in query:
-                    from Dictapp import closeappweb
+                    from Dictapp import closeappWeb
+
+                    closeappWeb(query)
 
                 elif "set an alarm" in query:
                     print("input time example:- 10 and 10 and 10")
@@ -114,8 +116,6 @@ if __name__ == "__main__":
                     a = input("Please tell the time :- ")
                     alarm(a)
                     speak("Done,sir")
-
-                    closeappweb(query)
                 elif "shutdown" in query:
                     speak("Goint to sleep , sir")
                     exit()
