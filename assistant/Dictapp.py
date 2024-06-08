@@ -18,7 +18,7 @@ def speak(audio):
 dictapp = {
     "commandprompt": "cmd",
     "paint": "paint",
-    "word": "winword",
+    "word": "word",
     "excel": "excel",
     "chrome": "chrome",
     "vscode": "vscode",

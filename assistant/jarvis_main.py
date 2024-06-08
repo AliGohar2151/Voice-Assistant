@@ -116,6 +116,7 @@ if __name__ == "__main__":
                     a = input("Please tell the time :- ")
                     alarm(a)
                     speak("Done,sir")
+
                 elif "shutdown" in query:
                     speak("Goint to sleep , sir")
                     exit()
