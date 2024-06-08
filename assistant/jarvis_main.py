@@ -93,6 +93,9 @@ if __name__ == "__main__":
                     strTime = datetime.datetime.now().strftime("%H:%M")
                     speak(f"Sir, the time is {strTime}")
 
-                elif "sleep" in query:
+                elif "open" in query:
+                    pass
+
+                elif "shutdown" in query:
                     speak("Goint to sleep , sir")
                     exit()
