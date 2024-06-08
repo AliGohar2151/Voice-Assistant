@@ -94,8 +94,13 @@ if __name__ == "__main__":
                     speak(f"Sir, the time is {strTime}")
 
                 elif "open" in query:
-                    pass
+                    from Dictapp import openappweb
 
+                    openappweb(query)
+                elif "close" in query:
+                    from Dictapp import closeappweb
+
+                    closeappweb(query)
                 elif "shutdown" in query:
                     speak("Goint to sleep , sir")
                     exit()
