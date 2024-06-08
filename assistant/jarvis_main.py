@@ -52,7 +52,7 @@ if __name__ == "__main__":
                 elif ("fine") in query:
                     speak("that's great, sir")
                 elif ("how are you") in query:
-                    speak("Perfect, sir")
+                    speak("Perfect, sir. What about you?")
                 elif ("thank you") in query:
                     speak("you are welcome, sir")
                 elif ("who are you") in query:
