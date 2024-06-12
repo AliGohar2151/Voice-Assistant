@@ -77,14 +77,13 @@ def latestNews():
         speak(title)
         print(title)
         print(f"For more info visit: {news_url}")
+        speak("Want to hear more?")
 
         while True:
-            speak("Want to hear more?")
             user_input = takeCommand()
-
             if user_input.lower() == "yes":
                 break
             elif user_input.lower() == "no":
                 return
             else:
-                speak("Sorry, I didn't catch that. Please say yes or no.")
+                speak("Please say yes or no.")
