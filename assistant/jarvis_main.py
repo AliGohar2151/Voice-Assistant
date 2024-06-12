@@ -1,5 +1,5 @@
 import pyttsx3
-import speech_recognition
+import speech_recognition as sr
 import requests
 from bs4 import BeautifulSoup
 import datetime
@@ -17,9 +17,11 @@ def speak(audio):
     engine.runAndWait()
 
 
-def takeCommand():
-    r = speech_recognition.Recognizer()
-    with speech_recognition.Microphone() as source:
+def takeCommand(prompt=""):
+    r = sr.Recognizer()
+    with sr.Microphone() as source:
+        if prompt:
+            speak(prompt)
         print("Listening...")
         r.pause_threshold = 1
         r.energy_threshold = 300
@@ -29,11 +31,18 @@ def takeCommand():
         print("Recognizing...")
         query = r.recognize_google(audio, language="en-in")
         print(f"User said: {query}\n")
+    except sr.UnknownValueError:
+        print("Sorry, I did not understand that.")
+        return "None"
+    except sr.RequestError:
+        print("Sorry, my speech service is down.")
+        speak("Sorry, my speech service is down.")
+        return "None"
     except Exception as e:
         print(e)
         print("Say that again please...")
         return "None"
-    return query
+    return query.lower()
 
 
 def alarm(query):
@@ -67,6 +76,14 @@ if __name__ == "__main__":
                 elif ("who are you") in query:
                     speak("I am your Jarvis, your personal assistant")
 
+                elif "open" in query:
+                    from Dictapp import openAppWeb
+
+                    openAppWeb(query)
+                elif "close" in query:
+                    from Dictapp import closeappWeb
+
+                    closeappWeb(query)
                 elif "google" in query:
                     from SearchNow import searchGoogle
 
@@ -129,15 +146,6 @@ if __name__ == "__main__":
                     speak("Turning volume down, sir")
                     volumeDown()
 
-                elif "open" in query:
-                    from Dictapp import openAppWeb
-
-                    openAppWeb(query)
-                elif "close" in query:
-                    from Dictapp import closeappWeb
-
-                    closeappWeb(query)
-
                 elif "set an alarm" in query:
                     print("input time example:- 10 and 10 and 10")
                     speak("Set the time")
@@ -145,23 +153,19 @@ if __name__ == "__main__":
                     alarm(a)
                     speak("Done,sir")
 
-                elif "remember that" in query or "remember" in query:
-                    rememberMessage = query.replace("remember that", "")
-                    rememberMessage = query.replace("jarvis", "")
-                    speak("You told me " + rememberMessage)
-                    remember = open("Remember.txt", "a")
-                    remember.write(rememberMessage)
-                    remember.close()
-
-                elif "what do you remember" in query:
-                    remember = open("Remember.txt", "r")
-                    speak("You told me to " + remember.read())
-
                 elif "news" in query:
                     from NewsRead import latestNews
 
                     latestNews()
+                elif (
+                    "remember that" in query
+                    or "remember this" in query
+                    or "what do you remember" in query
+                    or "remeber history" in query
+                ):
+                    from Remember import remember
 
+                    remember(query)
                 elif "shutdown" in query:
-                    speak("Goint to sleep , sir")
+                    speak("Ok sir, shutting down")
                     exit()

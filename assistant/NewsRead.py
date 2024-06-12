@@ -20,30 +20,32 @@ def speak(audio):
     engine.runAndWait()
 
 
-def takeCommand():
-    """
-    Listens for user input and returns it as a lowercase string.
-
-    Returns:
-        str: The user input, or "none" if there was an error.
-    """
+def takeCommand(prompt=""):
     r = sr.Recognizer()
     with sr.Microphone() as source:
+        if prompt:
+            speak(prompt)
         print("Listening...")
         r.pause_threshold = 1
         r.energy_threshold = 300
         audio = r.listen(source, 0, 4)
+
     try:
         print("Recognizing...")
-        query = r.recognize_google(audio, language="en-us")
+        query = r.recognize_google(audio, language="en-in")
         print(f"User said: {query}\n")
-        return query.lower()
     except sr.UnknownValueError:
-        speak("Sorry, I didn't catch that. Please try again.")
-        return "none"
+        print("Sorry, I did not understand that.")
+        return "None"
     except sr.RequestError:
+        print("Sorry, my speech service is down.")
         speak("Sorry, my speech service is down.")
-        return "none"
+        return "None"
+    except Exception as e:
+        print(e)
+        print("Say that again please...")
+        return "None"
+    return query.lower()
 
 
 def latestNews():
