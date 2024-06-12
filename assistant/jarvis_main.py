@@ -4,6 +4,7 @@ import requests
 from bs4 import BeautifulSoup
 import datetime
 import os
+import pyautogui
 
 engine = pyttsx3.init("sapi5")
 voices = engine.getProperty("voices")
@@ -57,7 +58,7 @@ if __name__ == "__main__":
                     break
                 elif "hello" in query:
                     speak("Hello sir, How can I help you?")
-                elif ("fine") in query:
+                elif ("fine") in query or ("good") in query:
                     speak("that's great, sir")
                 elif ("how are you") in query:
                     speak("Perfect, sir. What about you?")
@@ -102,6 +103,31 @@ if __name__ == "__main__":
                 elif "the time" in query:
                     strTime = datetime.datetime.now().strftime("%H:%M")
                     speak(f"Sir, the time is {strTime}")
+
+                elif "pause" in query:
+                    pyautogui.press("k")
+                    speak("Video paused")
+                elif "play" in query:
+                    pyautogui.press("k")
+                    speak("Video resumed")
+                elif "mute" in query:
+                    pyautogui.press("m")
+                    speak("Video muted")
+                elif "unmute" in query:
+                    pyautogui.press("m")
+                    speak("Video unmuted")
+
+                elif "volume up" in query or "increase volume" in query:
+                    from Keyboard import volumeUp
+
+                    speak("Turning volume up, sir")
+                    volumeUp()
+
+                elif "volume down" in query or "decrease volume" in query:
+                    from Keyboard import volumeDown
+
+                    speak("Turning volume down, sir")
+                    volumeDown()
 
                 elif "open" in query:
                     from Dictapp import openAppWeb

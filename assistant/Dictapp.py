@@ -22,7 +22,7 @@ dictapp = {
     "word": "winword",
     "excel": "excel",
     "chrome": "chrome",
-    "vs code": "code",  # Make sure 'code' is in PATH
+    "vs code": "code",
     "powerpoint": "powerpnt",
 }
 
