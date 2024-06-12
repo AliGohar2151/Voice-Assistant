@@ -145,6 +145,23 @@ if __name__ == "__main__":
                     alarm(a)
                     speak("Done,sir")
 
+                elif "remember that" in query:
+                    rememberMessage = query.replace("remember that", "")
+                    rememberMessage = query.replace("jarvis", "")
+                    speak("You told me to remember that" + rememberMessage)
+                    remember = open("Remember.txt", "a")
+                    remember.write(rememberMessage)
+                    remember.close()
+
+                elif "what do you remember" in query:
+                    remember = open("Remember.txt", "r")
+                    speak("You told me to remember that" + remember.read())
+
+                elif "news" in query:
+                    from NewsRead import latestNews
+
+                    latestNews()
+
                 elif "shutdown" in query:
                     speak("Goint to sleep , sir")
                     exit()
