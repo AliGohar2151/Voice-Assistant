@@ -10,11 +10,23 @@ engine.setProperty("rate", 170)
 
 
 def speak(audio):
+    """
+    Speaks the given text using the text-to-speech engine.
+
+    Args:
+        audio (str): The text to be spoken.
+    """
     engine.say(audio)
     engine.runAndWait()
 
 
 def takeCommand():
+    """
+    Listens for user input and returns it as a lowercase string.
+
+    Returns:
+        str: The user input, or "none" if there was an error.
+    """
     r = sr.Recognizer()
     with sr.Microphone() as source:
         print("Listening...")
@@ -35,6 +47,9 @@ def takeCommand():
 
 
 def latestNews():
+    """
+    Fetches and displays the latest news articles based on user input.
+    """
     apidict = {
         "business": "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=60effb124105464098d23a406203e42a",
         "entertainment": "https://newsapi.org/v2/top-headlines?country=us&category=entertainment&apiKey=60effb124105464098d23a406203e42a",
