@@ -11,8 +11,7 @@ voices = engine.getProperty("voices")
 engine.setProperty("voice", voices[0].id)
 engine.setProperty("rate", 170)
 
-
-def speak(audio):
+"""def speak(audio):
     engine.say(audio)
     engine.runAndWait()
 
@@ -43,6 +42,7 @@ def takeCommand(prompt=""):
         print("Say that again please...")
         return "None"
     return query.lower()
+"""
 
 
 def alarm(query):
